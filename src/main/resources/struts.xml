@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+    <constant name="struts.custom.i18n.resources" value="global"/>
+    
+    <package name="default" extends="struts-default">
+        <result-types>
+            <result-type name="tiles" 
+                         class="org.apache.struts2.views.tiles.TilesResult"/>
+        </result-types>
+
+        <action name="inicio" 
+                class="com.llamagas.sisotra.action.LoginAction" 
+                 method="inicio">
+            <result name="login">/login.jsp</result>
+        </action>
+        
+        <action name="login" 
+                class="com.llamagas.sisotra.action.LoginAction" 
+                method="login">
+            <result type="tiles">d_principal</result>
+            <result name="login">/login.jsp</result>
+            <result name="input">/login.jsp</result>
+        </action>
+        <action name="logout" 
+                 class="com.llamagas.sisotra.action.LoginAction" 
+                 method="logout">
+            <result name="login">/login.jsp</result>
+        </action>
+        <action name="inicioRegistroOT" 
+                 class="com.llamagas.sisotra.action.OrdenTrabajoAction" 
+                 method="nuevo">
+            <result type="tiles">d_REGISTRO_OT</result>
+        </action>
+        <action name="EVregistrarOT"
+                 class="com.llamagas.sisotra.action.OrdenTrabajoAction" 
+                 method="nuevo_actualizar_OT">
+            <result type="redirectAction">inicioRegistroOT</result>
+            <result name="input" type="tiles">d_REGISTRO_OT</result>
+        </action>
+        
+        <action name="listadoOT"
+                 class="com.llamagas.sisotra.action.OrdenTrabajoAction" 
+                 method="inicializar">
+            <result type="tiles">d_LISTADO_OT</result>
+            <result name="input" type="tiles">d_REGISTRO_OT</result>
+        </action>
+        
+        <action name="deleteOT"
+                 class="com.llamagas.sisotra.action.OrdenTrabajoAction" 
+                 method="eliminarOrdenTrabajo">
+            <result type="tiles">d_LISTADO_OT</result>
+            <result name="input" type="tiles">d_REGISTRO_OT</result>
+        </action>
+        
+        <action name="modificarOT"
+                 class="com.llamagas.sisotra.action.OrdenTrabajoAction" 
+                 method="getOT">
+            <result type="tiles">d_modificar_OT</result>
+            <result name="input" type="tiles">d_LISTADO_OT</result>
+        </action>
+        
+        <action name="EVeditarOT"
+                 class="com.llamagas.sisotra.action.OrdenTrabajoAction" 
+                 method="nuevo_actualizar_OT">
+            <result type="tiles">d_LISTADO_OT</result>
+            <result name="input" type="tiles">d_modificar_OT</result>
+        </action>
+        
+        <action name="inicioAsignarOT"
+                 class="com.llamagas.sisotra.action.OrdenTrabajoAction" 
+                 method="iniciarAsignacionOT">
+            <result type="tiles">d_inicioAsignar_OT</result>
+            <result name="input" type="tiles">d_inicioAsignar_OT</result>
+        </action>
+        
+        <action name="modificarEstadoOT"
+                 class="com.llamagas.sisotra.action.OrdenTrabajoAction" 
+                 method="getasignarOT">
+            <result type="tiles">d_registroEstado_OT</result>
+            <result name="error" type="tiles">d_inicioAsignar_OT</result>
+        </action>
+        
+        <action name="AsignarOT"
+                 class="com.llamagas.sisotra.action.OrdenTrabajoAction" 
+                 method="asignarOT">
+            <result type="tiles">d_inicioAsignar_OT</result>
+            <result name="error" type="tiles">d_inicioAsignar_OT</result>
+        </action>
+        
+        <action name="ListaAsignaciones"
+                 class="com.llamagas.sisotra.action.OrdenTrabajoAction" 
+                 method="ListarOT">
+            <result type="tiles">d_ListaAsignaciones_OT</result>
+            <result name="input" type="tiles">d_REGISTRO_OT</result>
+        </action>
+    </package>
+</struts>
